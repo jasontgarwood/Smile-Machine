@@ -2,8 +2,8 @@ import RPi.GPIO as GPIO
 import time
 
 # Set up GPIO pins for servos
-servo1_pin = 17  # GPIO17 for servo 1 (LEFT)
-servo2_pin = 18  # GPIO18 for servo 2 (RIGHT)
+servo1_pin = 17  # GPIO17 for servo 1 (RIGHT)
+servo2_pin = 18  # GPIO18 for servo 2 (LEFT)
 
 # Set up GPIO mode and pins
 GPIO.setmode(GPIO.BCM)
@@ -20,20 +20,20 @@ servo2_pwm.start(0)
 
 def rotate_servos():
     # Rotate servo 1 counterclockwise (quarter turn)
-    servo1_pwm.ChangeDutyCycle(11)  # Change duty cycle for rotation (slightly reduced)
-    time.sleep(0.4)  # Adjust sleep time as needed for desired rotation
-    servo1_pwm.ChangeDutyCycle(0)  # Stop rotation
+    servo1_pwm.ChangeDutyCycle(0)  # Change duty cycle for rotation (slightly reduced)
+    time.sleep(0.4)  
+    servo1_pwm.ChangeDutyCycle(3) 
 
     # Rotate servo 2 clockwise (quarter turn)
     servo2_pwm.ChangeDutyCycle(3)  # Change duty cycle for rotation (slightly reduced)
-    time.sleep(0.4)  # Adjust sleep time as needed for desired rotation
-    servo2_pwm.ChangeDutyCycle(0)  # Stop rotation
+    time.sleep(0.4)  
+    servo2_pwm.ChangeDutyCycle(0)  
 
-def return_to_neutral():
+def return_to_active():
     # Return servos to neutral position
     servo1_pwm.ChangeDutyCycle(7.5)  # Neutral position for servo 1
     servo2_pwm.ChangeDutyCycle(7.5)  # Neutral position for servo 2
-    time.sleep(0.5)  # Adjust sleep time as needed
+    time.sleep(0.5)  
 
 try:
     while True:
@@ -41,7 +41,7 @@ try:
         if user_input.lower() == "smile":
             rotate_servos()
         else:
-            return_to_neutral()
+            return_to_active()
         
 
 except KeyboardInterrupt:
