@@ -19,28 +19,21 @@ servo1_pwm.start(0)
 servo2_pwm.start(0)
 
 def rotate_servos():
-    # Rotate servo 1 counterclockwise (adjust start position)
-    servo1_pwm.ChangeDutyCycle(9)  # Adjust start position
-    time.sleep(0.4)  # Adjust sleep time as needed for desired rotation
-    servo1_pwm.ChangeDutyCycle(10)  # Adjust stop position
+    # Rotate servo 1 counterclockwise (quarter turn)
+    servo1_pwm.ChangeDutyCycle(11)  # Change duty cycle for rotation (slightly reduced)
     time.sleep(0.4)  # Adjust sleep time as needed for desired rotation
     servo1_pwm.ChangeDutyCycle(0)  # Stop rotation
 
-    # Rotate servo 2 clockwise (adjust start position)
-    servo2_pwm.ChangeDutyCycle(2)  # Adjust start position
-    time.sleep(0.4)  # Adjust sleep time as needed for desired rotation
-    servo2_pwm.ChangeDutyCycle(3)  # Adjust stop position
+    # Rotate servo 2 clockwise (quarter turn)
+    servo2_pwm.ChangeDutyCycle(3)  # Change duty cycle for rotation (slightly reduced)
     time.sleep(0.4)  # Adjust sleep time as needed for desired rotation
     servo2_pwm.ChangeDutyCycle(0)  # Stop rotation
-
-    print("active")
 
 def return_to_neutral():
     # Return servos to neutral position
     servo1_pwm.ChangeDutyCycle(7.5)  # Neutral position for servo 1
     servo2_pwm.ChangeDutyCycle(7.5)  # Neutral position for servo 2
-    time.sleep(0.4)
-    print("nuetral")
+    time.sleep(0.5)  # Adjust sleep time as needed
 
 try:
     while True:
@@ -48,7 +41,8 @@ try:
         if user_input.lower() == "smile":
             rotate_servos()
         else:
-            return_to_neutral()                                             
+            return_to_neutral()
+        
 
 except KeyboardInterrupt:
     servo1_pwm.stop()
