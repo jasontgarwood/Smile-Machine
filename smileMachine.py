@@ -29,9 +29,9 @@ def rotate_servos():
     time.sleep(0.4)  
     servo2_pwm.ChangeDutyCycle(0)  
 
-def return_to_active():
+def return_to_nuetral():
     # Return servos to neutral position
-    servo1_pwm.ChangeDutyCycle(7.5)  # Neutral position for servo 1
+    servo1_pwm.ChangeDutyCycle(2.5)  # Neutral position for servo 1
     servo2_pwm.ChangeDutyCycle(7.5)  # Neutral position for servo 2
     time.sleep(0.5)  
 
@@ -41,7 +41,7 @@ try:
         if user_input.lower() == "smile":
             rotate_servos()
         else:
-            return_to_active()
+            return_to_nuetral()
         
 
 except KeyboardInterrupt:
